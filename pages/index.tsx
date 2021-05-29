@@ -1,23 +1,23 @@
 import Head from 'next/head';
 import Layout, { siteTitle } from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
-import {getSortedPostsData} from '../lib/posts'
+import Link from 'next/link';
+import { getSortedPostsData } from '../lib/posts';
 
-
-export const  getStaticProps: any = async () => {
-  const allPostsData = getSortedPostsData()
+export const getStaticProps: any = async () => {
+  const allPostsData = getSortedPostsData();
   return {
     props: {
-      allPostsData
-    }
-  }
-}
+      allPostsData,
+    },
+  };
+};
 
 interface HomeProps {
-  allPostsData: any
+  allPostsData: any;
 }
 
-export const Home: React.FC<HomeProps> = ({allPostsData}) => {
+export const Home: React.FC<HomeProps> = ({ allPostsData }) => {
   return (
     <Layout home>
       <Head>
@@ -30,8 +30,11 @@ export const Home: React.FC<HomeProps> = ({allPostsData}) => {
           <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
         </p>
       </section>
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>9
-        <h2 className={utilStyles.headingLg}>Blog</h2>
+      <Link href="/posts/test-user">
+        <a>ページに飛ぶ</a>
+      </Link>
+      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+        9<h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>
           {allPostsData.map(({ id, date, title }) => (
             <li className={utilStyles.listItem} key={id}>
